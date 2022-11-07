@@ -87,24 +87,4 @@ public class SpartanGetRequest {
 
     }
 
-    /*TASK
-    Given Accept type application/xml
-    When user send GET request to /api/spartans/10 end point
-    Then status code must be 406
-    And response Content Type must be application/xml;charset=UTF-8
-    */
-
-    Response response = RestAssured.given().accept(ContentType.XML)
-            .when().get(baseUrl+"/api/spartans/10");
-
-
-
-
-
-
-
-
-
-
-
 }

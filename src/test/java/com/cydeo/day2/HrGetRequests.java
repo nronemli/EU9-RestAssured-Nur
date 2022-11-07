@@ -8,6 +8,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class HrGetRequests {
     //annotation executes one time before everything
     @BeforeAll
@@ -18,8 +22,7 @@ public class HrGetRequests {
     @DisplayName("GET request to/regions ")
     @Test
     public void test1() {
-        Response response = RestAssured.get("/regions");
-
+        Response response = get("/regions");
         //print the status code
         System.out.println("response.statusCode() = " + response.statusCode());
     }
@@ -35,16 +38,19 @@ public class HrGetRequests {
     @DisplayName("GET request to/regions/2 ")
     @Test
     public void test2() {
-        Response response = RestAssured.get("/regions/2");
+        Response response = given().accept(ContentType.JSON).
+                when().get("/regions/2");
 
         //Then response status code must be 200
-        Assertions.assertEquals(200, response.statusCode());
+        assertEquals(200, response.statusCode());
         //And content type equals to application/json
-        Assertions.assertEquals("application/json", response.contentType());
+        assertEquals("application/json", response.contentType());
         //And response body contains   Americas
-        Assertions.assertTrue(response.body().asString().contains("Americas"));
+        assertTrue(response.body().asString().contains("Americas"));
         response.prettyPrint();
+
     }
+
 
 
 
