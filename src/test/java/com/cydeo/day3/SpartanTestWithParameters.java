@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,24 +20,24 @@ public class SpartanTestWithParameters {
         RestAssured.baseURI = "http://54.208.34.57:8000";
     }
 
-  /*   Given accept type is Json
-          And Id parameter value is 5
-          When user sends GET request to /api/spartans/{id}
-          Then response status code should be 200
-          And response content-type: application/json
-          And "Blythe" should be in response payload(response body)
-       */
+    /*   Given accept type is Json
+            And Id parameter value is 5
+            When user sends GET request to /api/spartans/{id}
+            Then response status code should be 200
+            And response content-type: application/json
+            And "Blythe" should be in response payload(response body)
+         */
     @DisplayName("GET request to /api/spartans/{id} with ID 5")
     @Test
-    public void test1(){
+    public void test1() {
 
-    Response response = given().accept(ContentType.JSON)
-            .and().pathParams("id",5)
-            .when().get("/api/spartans/{id}");
+        Response response = given().accept(ContentType.JSON)
+                .and().pathParams("id", 5)
+                .when().get("/api/spartans/{id}");
 
-     assertEquals(200,response.statusCode());
-     assertEquals("application/json",response.contentType());
-     assertTrue(response.body().asString().contains("Blythe"));
+        assertEquals(200, response.statusCode());
+        assertEquals("application/json", response.contentType());
+        assertTrue(response.body().asString().contains("Blythe"));
 
 
     }
@@ -54,13 +57,13 @@ public class SpartanTestWithParameters {
     @Test
     public void test2() {
 
-        Response response= given().accept(ContentType.JSON)
-                .and().pathParams("id",500)
+        Response response = given().accept(ContentType.JSON)
+                .and().pathParams("id", 500)
                 .when().get("/api/spartans/{id}");
 
-       assertEquals(404, response.statusCode());
-       assertEquals("application/json",response.contentType());
-       assertTrue(response.body().asString().contains("Not Found"));
+        assertEquals(404, response.statusCode());
+        assertEquals("application/json", response.contentType());
+        assertTrue(response.body().asString().contains("Not Found"));
 
     }
 /*
@@ -76,28 +79,50 @@ public class SpartanTestWithParameters {
      */
 
 
-    @DisplayName("GET request to /api/spartans/search")
+    @DisplayName("GET request to /api/spartans/search with query params")
     @Test
     public void test3() {
 
-   Response response=     given().accept(ContentType.JSON)
-                .and().queryParam("nameContains","e")
-                .and().queryParam("gender","Female")
+        Response response = given().accept(ContentType.JSON).log().all()
+                .and().queryParam("nameContains", "e")
+                .and().queryParam("gender", "Female")
                 .when().get("/api/spartans/search");
 
         assertEquals(200, response.statusCode());
-        assertEquals("application/json",response.contentType());
+        assertEquals("application/json", response.contentType());
         assertTrue(response.body().asString().contains("Female"));
         assertTrue(response.body().asString().contains("Janette"));
+
+    }
+
+
+    @DisplayName("GET request to /api/spartans/search with query [arams (map)")
+    @Test
+    public void test4() {
+
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("nameContains", "e");
+        queryMap.put("gender", "Female");
+
+        Response response = given().
+                log().all()
+                .accept(ContentType.JSON)
+                .and().queryParam(String.valueOf(queryMap))
+                .when().get("/api/spartans/search");
+
+        assertEquals(200, response.statusCode());
+        assertEquals("application/json", response.contentType());
+        assertTrue(response.body().asString().contains("Female"));
+        assertTrue(response.body().asString().contains("Janette"));
+
+    }
+
+    @DisplayName("")
+    @Test
+    public void test5() {
+
+
     }
 
 
-
-
-
-
-
-
-
-
-    }
+}
