@@ -82,9 +82,7 @@ public class SpartanGetRequest {
 
         //verify content length is 17
         Assertions.assertEquals("17", response.header("Content-Length"));
-
         Assertions.assertEquals("Hello from Sparta", response.body().asString());
-
     }
 
 }

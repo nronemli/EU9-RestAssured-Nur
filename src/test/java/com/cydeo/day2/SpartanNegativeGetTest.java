@@ -39,7 +39,6 @@ public class SpartanNegativeGetTest {
         //verify content type
         assertEquals("application/xml;charset=UTF-8", response.contentType());
 
-
     }
 
 
