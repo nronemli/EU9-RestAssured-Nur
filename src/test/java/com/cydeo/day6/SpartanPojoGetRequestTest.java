@@ -32,7 +32,7 @@ public class SpartanPojoGetRequestTest extends SpartanTestBase {
         //1.using as() method
         //we convert json response to spartan object with the help of jackson
         //as method uses jason to deserialise (json to java class)
-        //check Spartan(pojo class linked to this test)
+        //check>> Spartan(pojo class linked to this test)
         Spartan spartanID15 = response.as(Spartan.class);
         System.out.println(spartanID15);
 
@@ -113,5 +113,8 @@ public class SpartanPojoGetRequestTest extends SpartanTestBase {
         System.out.println("spartanList.get(0).getName() = " + spartanList.get(1).getName());
         System.out.println("spartanList.get(0).getGender() = " + spartanList.get(1).getGender());
     }
+}
 
-    }
+
+
+

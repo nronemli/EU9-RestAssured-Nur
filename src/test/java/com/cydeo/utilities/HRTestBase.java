@@ -1,22 +1,27 @@
 package com.cydeo.utilities;
 
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
-public abstract class HRTestBase {
+import static io.restassured.RestAssured.baseURI;
 
+public abstract class HRTestBase {
     @BeforeAll
-    public static void init() {
-        RestAssured.baseURI = "http://54.208.34.57:1000/ords/hr";
-        String dbUrl =  " ";
-        String dbUsername = "HR";
-        String dbPassword = "HR";
+    public static void init(){
+        //save baseurl inside this variable so that we dont need to type each http method.
+        baseURI = "http://54.208.34.57:1000/ords/hr";
+
+        //get ip address from configuraitons
+        String dbUrl = "jdbc:oracle:thin:@54.208.34.57:1521:xe";
+        String dbUsername = "hr";
+        String dbPassword = "hr";
+
+      //  DBUtils.createConnection(dbUrl,dbUsername,dbPassword);
     }
 
-
     @AfterAll
-    public void tearDown(){
-        DBUtils.destroy();
+    public static void teardown(){
+
+        //DBUtils.destroy();
     }
 }
