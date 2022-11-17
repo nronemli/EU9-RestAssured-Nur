@@ -1,38 +1,20 @@
 package com.cydeo.pojo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
 
+//from lombok dependency
 @Getter
 @Setter
 @ToString
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Regions {
-    /*
-     "items": [
-        {
-            "region_id": 1,
-            "region_name": "Europe",
-            "links": [
-                {
-                    "rel": "self",
-                    "href": "http://54.208.34.57:1000/ords/hr/regions/1"
-                }
-            ]
-        }
-     */
-    //use JsonProperty to create a new variable name that does not match the JsonKey
-    //use JsonProperty annotation that comes from jackson
-    @JsonProperty("region_id")
-    private int regionId;
-    @JsonProperty("region_name")
-    private String r_name;
-    private List<Link> links;
 
+    private int count;
+    private List<Region> items;
 
 }
-
