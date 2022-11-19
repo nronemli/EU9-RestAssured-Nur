@@ -29,7 +29,7 @@ public class SpartanWithJsonPath extends SpartanTestBase {
     public void test1() {
 
         Response response= given().accept(ContentType.JSON)
-                .and().pathParams("id",10)
+                .and().pathParam("id",10)
                 .when().get("api/spartans/{id}");
 
         assertEquals(200,response.statusCode());

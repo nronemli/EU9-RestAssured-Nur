@@ -103,7 +103,6 @@ public class SpartanPostRequestDemo extends SpartanTestBase {
     @Test
     public void postMethod3() {
 
-
         //create one object from your pojo, send it as a JSON
         Spartan spartan = new Spartan();
         spartan.setName("Severus");
