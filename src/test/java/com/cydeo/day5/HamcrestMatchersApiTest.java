@@ -45,7 +45,7 @@ public class HamcrestMatchersApiTest {
 
     }
 
-    @DisplayName("CBTraining teacher with chaining and mathcers ")
+    @DisplayName("CBTraining teacher with chaining and matchers ")
     @Test
     public void teachersData() {
         //request

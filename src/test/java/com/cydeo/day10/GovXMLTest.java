@@ -33,7 +33,6 @@ public class GovXMLTest {
         List<Object> listOfYear =  xmlPath.getList("response.row.row.year");
         System.out.println("listOfYear = " + listOfYear);
 
-
         List<Object> unkowns =  xmlPath.getList("response.row.row.unknown");
         System.out.println("unkowns = " + unkowns);
 
@@ -44,6 +43,4 @@ public class GovXMLTest {
         System.out.println("address = " + address);
 
     }
-
-
 }
