@@ -71,7 +71,6 @@ public class SpartanPostRequestDemo extends SpartanTestBase {
         requestJsonMap.put("gender", "Male");
         requestJsonMap.put("phone", "8877445596L");
 
-
         String requestJsonBody = "{\n" +
                 "      \"gender\":\"Male\",\n" +
                 "      \"name\":\"Severus\",\n" +
