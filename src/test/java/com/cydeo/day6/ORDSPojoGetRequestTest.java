@@ -58,7 +58,9 @@ public class ORDSPojoGetRequestTest extends HRTestBase {
         Regions regions = get("/regions").then().statusCode(200)
                 .extract().response().as(Regions.class);
 
+
         assertThat(regions.getCount(),is(4));
+        assertThat(regions.getLimit(),is(25));
 
         //create empty list to store values
         List<String> regionNames= new ArrayList<>();

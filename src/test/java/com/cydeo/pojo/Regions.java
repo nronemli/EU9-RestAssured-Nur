@@ -14,6 +14,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Regions {
 
+    private int limit;
     private int count;
     private List<Region> items;
 
